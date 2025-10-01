@@ -54,22 +54,115 @@ if (menuToggle && menu) {
 }
 
 const galleryItems = document.querySelectorAll('.gallery__item');
+const galleryLightbox = document.querySelector('.gallery-lightbox');
+const galleryLightboxClose = document.querySelector('.gallery-lightbox__close');
+const galleryLightboxImage = document.getElementById('gallery-lightbox-image');
+const galleryLightboxTitle = document.getElementById('gallery-lightbox-title');
+const galleryLightboxCaption = document.getElementById('gallery-lightbox-caption');
+let lastGalleryTrigger = null;
+
+const setGalleryActive = (item) => {
+  galleryItems.forEach((figure) => {
+    if (figure === item) {
+      figure.classList.add('is-active');
+    } else {
+      figure.classList.remove('is-active');
+    }
+  });
+};
+
+const populateGalleryLightbox = (item) => {
+  if (!galleryLightboxImage || !galleryLightboxTitle || !galleryLightboxCaption) {
+    return;
+  }
+  const figureImage = item.querySelector('img');
+  const source = item.dataset.full || figureImage?.currentSrc || figureImage?.src;
+  if (source) {
+    galleryLightboxImage.src = source;
+  }
+  const imageAlt = figureImage?.alt || 'Fotografia ampliada da galeria';
+  galleryLightboxImage.alt = imageAlt;
+  const title = item.dataset.title || imageAlt;
+  galleryLightboxTitle.textContent = title;
+  const caption = item.dataset.caption || figureImage?.getAttribute('data-caption') || '';
+  galleryLightboxCaption.textContent = caption.trim();
+};
+
+const openGalleryLightbox = (item) => {
+  if (!galleryLightbox) {
+    return;
+  }
+  lastGalleryTrigger = item;
+  setGalleryActive(item);
+  populateGalleryLightbox(item);
+  galleryLightbox.hidden = false;
+  requestAnimationFrame(() => {
+    galleryLightbox.classList.add('is-open');
+    galleryLightboxClose?.focus();
+  });
+};
+
+const closeGalleryLightbox = () => {
+  if (!galleryLightbox || galleryLightbox.hidden) {
+    return;
+  }
+
+  const finishClose = () => {
+    galleryLightbox.hidden = true;
+    galleryLightboxImage?.removeAttribute('src');
+    galleryLightboxImage?.setAttribute('alt', '');
+    if (galleryLightboxTitle) {
+      galleryLightboxTitle.textContent = '';
+    }
+    if (galleryLightboxCaption) {
+      galleryLightboxCaption.textContent = '';
+    }
+    galleryItems.forEach((item) => item.classList.remove('is-active'));
+    if (lastGalleryTrigger) {
+      lastGalleryTrigger.focus();
+    }
+  };
+
+  galleryLightbox.classList.remove('is-open');
+
+  const handleTransitionEnd = () => {
+    finishClose();
+    galleryLightbox.removeEventListener('transitionend', handleTransitionEnd);
+  };
+
+  galleryLightbox.addEventListener('transitionend', handleTransitionEnd);
+  setTimeout(() => {
+    if (!galleryLightbox.hidden) {
+      finishClose();
+      galleryLightbox.removeEventListener('transitionend', handleTransitionEnd);
+    }
+  }, 320);
+};
 
 galleryItems.forEach((item) => {
   item.addEventListener('click', () => {
-    const isActive = item.classList.contains('is-active');
-    galleryItems.forEach((figure) => figure.classList.remove('is-active'));
-    if (!isActive) {
-      item.classList.add('is-active');
+    openGalleryLightbox(item);
+  });
+
+  item.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openGalleryLightbox(item);
     }
   });
 });
 
-window.addEventListener('click', (event) => {
-  if (!event.target.closest('.gallery__item')) {
-    galleryItems.forEach((figure) => figure.classList.remove('is-active'));
-  }
+galleryLightboxClose?.addEventListener('click', () => {
+  closeGalleryLightbox();
+});
 
+galleryLightbox?.addEventListener('click', (event) => {
+  if (event.target === galleryLightbox) {
+    closeGalleryLightbox();
+  }
+});
+
+window.addEventListener('click', (event) => {
   if (
     menu &&
     menu.dataset.open === 'true' &&
@@ -183,7 +276,16 @@ window.addEventListener('keydown', (event) => {
     if (legendPopup && !legendPopup.hidden) {
       event.preventDefault();
       closeLegendPopup();
-    } else if (menu && menu.dataset.open === 'true') {
+      return;
+    }
+
+    if (galleryLightbox && !galleryLightbox.hidden) {
+      event.preventDefault();
+      closeGalleryLightbox();
+      return;
+    }
+
+    if (menu && menu.dataset.open === 'true') {
       closeMenu();
       menuToggle?.focus();
     }
