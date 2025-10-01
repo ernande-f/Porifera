@@ -25,6 +25,8 @@ hotspots.forEach((hotspot) => {
 
 const menuToggle = document.querySelector('.menu-toggle');
 const menu = document.getElementById('menu-links');
+let magazineNavigationHandler = null;
+let magazineHotkeysHandler = null;
 
 const closeMenu = () => {
   if (!menuToggle || !menu) {
@@ -42,7 +44,16 @@ if (menuToggle && menu) {
   });
 
   menu.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', (event) => {
+      const target = link.getAttribute('href');
+      if (magazineNavigationHandler && target && target.startsWith('#') && target.length > 1) {
+        const handled = magazineNavigationHandler(target.slice(1), { focus: true });
+        if (handled) {
+          event.preventDefault();
+        }
+      }
+      closeMenu();
+    });
   });
 
   menu.addEventListener('keyup', (event) => {
@@ -289,5 +300,299 @@ window.addEventListener('keydown', (event) => {
       closeMenu();
       menuToggle?.focus();
     }
+    return;
+  }
+
+  if (magazineHotkeysHandler && (event.key === 'ArrowRight' || event.key === 'ArrowLeft')) {
+    magazineHotkeysHandler(event);
   }
 });
+
+
+
+
+const initializeMagazine = () => {
+  const magazine = document.querySelector('.magazine');
+  if (!magazine) {
+    return;
+  }
+
+  const header = document.querySelector('.site-header');
+  let headerOffset = 0;
+
+  const updatePageMetrics = () => {
+    const headerHeight = header?.offsetHeight ?? 0;
+    headerOffset = headerHeight;
+    const availableHeight = window.innerHeight - headerHeight;
+    const pageHeight = availableHeight > 0 ? availableHeight : Math.max(window.innerHeight, 320);
+    magazine.style.setProperty('--magazine-header-offset', `${headerHeight}px`);
+    magazine.style.setProperty('--magazine-page-height', `${pageHeight}px`);
+  };
+
+  updatePageMetrics();
+
+  window.addEventListener('resize', updatePageMetrics);
+
+  if (header && 'ResizeObserver' in window) {
+    const headerObserver = new ResizeObserver(() => {
+      updatePageMetrics();
+    });
+    headerObserver.observe(header);
+  }
+
+  const viewport = magazine.querySelector('.magazine__viewport');
+  if (!viewport) {
+    return;
+  }
+
+  const sections = Array.from(viewport.children).filter(
+    (element) => element instanceof HTMLElement && element.tagName === 'SECTION'
+  );
+
+  if (!sections.length) {
+    return;
+  }
+
+  const navigationButtons = Array.from(
+    magazine.querySelectorAll('button[data-direction]')
+  );
+  const prevButtons = navigationButtons.filter((button) => button.dataset.direction === 'prev');
+  const nextButtons = navigationButtons.filter((button) => button.dataset.direction === 'next');
+  const currentLabel = magazine.querySelector('.magazine__current');
+  const totalLabel = magazine.querySelector('.magazine__total');
+  const statusLabel = magazine.querySelector('.magazine__status');
+
+  const totalPages = sections.length;
+  let currentPage = 0;
+
+  if (totalLabel) {
+    totalLabel.textContent = String(totalPages);
+  }
+
+  magazine.dataset.totalPages = String(totalPages);
+  magazine.dataset.currentPage = String(currentPage);
+
+  const sectionIndexMap = new Map();
+
+  const titleOverrides = {
+    inicio: 'Início',
+    diagnostica: 'Característica diagnóstica',
+    gerais: 'Características gerais',
+    anatomia: 'Anatomia',
+    tipos: 'Tipos corporais',
+    classes: 'Classes de Porifera',
+    dormencia: 'Dormência e gemulação',
+    reproducao: 'Reprodução',
+    evolucao: 'Evolução',
+    importancia: 'Importância',
+    referencias: 'Referências',
+  };
+  const getSectionTitle = (section) => {
+    const heading = section.querySelector('.section__heading h2, h1');
+    return heading?.textContent?.trim() || null;
+  };
+
+  const formatPageNumber = (index) => String(index).padStart(2, '0');
+
+  sections.forEach((section, index) => {
+    section.dataset.pageIndex = String(index);
+    if (section.id) {
+      sectionIndexMap.set(section.id, index);
+    }
+    section.setAttribute('tabindex', '-1');
+    section.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
+    const title = getSectionTitle(section);
+    if (title) {
+      section.setAttribute('aria-label', title);
+    }
+  });
+
+  const ensurePageBanners = () => {
+    sections.forEach((section, index) => {
+      const overrideTitle = section.id ? titleOverrides[section.id] : null;
+      const resolvedTitle = overrideTitle || getSectionTitle(section) || `Página ${formatPageNumber(index)}`;
+      const currentBanner = section.querySelector('.page-banner');
+      if (currentBanner) {
+        const indexNode = currentBanner.querySelector('.page-banner__index');
+        const titleNode = currentBanner.querySelector('.page-banner__title');
+        if (indexNode) {
+          indexNode.textContent = formatPageNumber(index);
+        }
+        if (titleNode) {
+          titleNode.textContent = resolvedTitle;
+        }
+        return;
+      }
+      const banner = document.createElement('div');
+      banner.className = 'page-banner';
+      banner.setAttribute('aria-hidden', 'true');
+      banner.innerHTML = `<span class="page-banner__index">${formatPageNumber(index)}</span><span class="page-banner__title">${resolvedTitle}</span>`;
+      section.prepend(banner);
+    });
+  };
+
+  ensurePageBanners();
+
+  const focusSection = (section) => {
+    const focusable = section.querySelector(
+      'h1, h2, h3, .hero__cta, button, a, [tabindex]:not([tabindex="-1"])'
+    );
+    const target = focusable instanceof HTMLElement ? focusable : section;
+    if (target instanceof HTMLElement) {
+      requestAnimationFrame(() => {
+        target.focus({ preventScroll: true });
+      });
+    }
+  };
+
+  const updateUi = () => {
+    magazine.style.setProperty('--magazine-page', String(currentPage));
+    const progress = ((currentPage + 1) / totalPages) * 100;
+    magazine.style.setProperty('--magazine-progress', `${progress}%`);
+    if (currentLabel) {
+      currentLabel.textContent = String(currentPage + 1);
+    }
+    magazine.dataset.currentPage = String(currentPage);
+    if (statusLabel) {
+      statusLabel.setAttribute('data-page', `${currentPage + 1}/${totalPages}`);
+    }
+    prevButtons.forEach((button) => {
+      button.disabled = currentPage === 0;
+    });
+    nextButtons.forEach((button) => {
+      button.disabled = currentPage >= totalPages - 1;
+    });
+    sections.forEach((section, index) => {
+      const isActive = index === currentPage;
+      section.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+    });
+  };
+
+  const goToPage = (index, options = {}) => {
+    const { focus = false, scroll = true, updateHash = true } = options;
+    if (index < 0 || index >= totalPages) {
+      return false;
+    }
+    const hasChanged = currentPage !== index;
+    currentPage = index;
+    updateUi();
+    if (scroll) {
+      const behavior = hasChanged ? 'smooth' : 'auto';
+      const targetTop = magazine.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(targetTop, 0),
+        behavior,
+      });
+    }
+    const activeSection = sections[currentPage];
+    if (focus) {
+      focusSection(activeSection);
+    }
+    if (updateHash && activeSection?.id) {
+      history.replaceState(null, '', `#${activeSection.id}`);
+    }
+    return true;
+  };
+
+  const goToSection = (id, options = {}) => {
+    const cleanId = id.replace(/^#/, '');
+    if (!cleanId) {
+      return false;
+    }
+    let targetIndex = sectionIndexMap.get(cleanId);
+    if (targetIndex === undefined) {
+      const targetElement = document.getElementById(cleanId);
+      if (!targetElement) {
+        return false;
+      }
+      const hostSection = targetElement.closest('section[id]');
+      if (!hostSection) {
+        return false;
+      }
+      targetIndex = sectionIndexMap.get(hostSection.id);
+      if (targetIndex === undefined) {
+        return false;
+      }
+    }
+    return goToPage(targetIndex, options);
+  };
+
+  prevButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      goToPage(currentPage - 1, { focus: true });
+    });
+  });
+
+  nextButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      goToPage(currentPage + 1, { focus: true });
+    });
+  });
+
+  magazineNavigationHandler = (targetId, options = {}) => goToSection(targetId, options);
+
+  magazineHotkeysHandler = (event) => {
+    if (event.key === 'ArrowRight') {
+      const moved = goToPage(currentPage + 1, { focus: true });
+      if (moved) {
+        event.preventDefault();
+      }
+    } else if (event.key === 'ArrowLeft') {
+      const moved = goToPage(currentPage - 1, { focus: true });
+      if (moved) {
+        event.preventDefault();
+      }
+    }
+  };
+
+  const bindInternalAnchors = () => {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      if (link.closest('.main-nav')) {
+        return;
+      }
+      if (link.dataset.magazineBound === 'true') {
+        return;
+      }
+      link.dataset.magazineBound = 'true';
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') {
+          return;
+        }
+        const targetId = href.slice(1);
+        if (!targetId) {
+          return;
+        }
+        const handled = goToSection(targetId, { focus: true });
+        if (handled) {
+          event.preventDefault();
+        }
+      });
+    });
+  };
+
+  bindInternalAnchors();
+
+  magazine.classList.add('is-enhanced');
+  updateUi();
+
+  if (window.location.hash) {
+    const initialId = window.location.hash.slice(1);
+    if (initialId) {
+      goToSection(initialId, { focus: false, scroll: false, updateHash: false });
+    }
+  }
+
+  window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) {
+      return;
+    }
+    goToSection(hash, { focus: false, scroll: true, updateHash: false });
+  });
+};
+
+initializeMagazine();
+
+
+

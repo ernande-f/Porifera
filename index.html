@@ -15,649 +15,327 @@
   <body>
     <header class="site-header">
       <div class="site-header__container">
-        <a class="logo" href="#inicio">Universo dos Poríferos</a>
+        <a class="logo" href="#inicio" aria-label="Voltar ao início">Universo dos Poríferos</a>
         <button class="menu-toggle" aria-expanded="false" aria-controls="menu-links" type="button">Menu</button>
         <nav class="main-nav" id="menu-links" aria-label="Navegação principal">
-          <ul class="main-nav__list">
-            <li><a href="#introducao">Introdução</a></li>
-            <li><a href="#caracteristicas">Características</a></li>
-            <li><a href="#classificacao">Classificação</a></li>
-            <li><a href="#estrutura">Estrutura</a></li>
-            <li><a href="#tipos">Tipos corporais</a></li>
-            <li><a href="#reproducao">Reprodução</a></li>
-            <li><a href="#ecologia">Ecologia</a></li>
-            <li><a href="#videos">Vídeos</a></li>
-            <li><a href="#galeria">Galeria</a></li>
-            <li><a href="#referencias">Referências</a></li>
-          </ul>
+          <div class="main-nav__surface" role="presentation">
+            <a class="main-nav__brand" href="#inicio">Universo dos Poríferos</a>
+            
+<ul class="main-nav__list">
+  <li><a href="#inicio"><span class="nav-index">00</span><span class="sr-only">Início</span></a></li>
+  <li><a href="#diagnostica"><span class="nav-index">01</span><span class="sr-only">Característica diagnóstica</span></a></li>
+  <li><a href="#gerais"><span class="nav-index">02</span><span class="sr-only">Características gerais</span></a></li>
+  <li><a href="#anatomia"><span class="nav-index">03</span><span class="sr-only">Anatomia</span></a></li>
+  <li><a href="#tipos"><span class="nav-index">04</span><span class="sr-only">Tipos corporais</span></a></li>
+  <li><a href="#classes"><span class="nav-index">05</span><span class="sr-only">Classes</span></a></li>
+  <li><a href="#dormencia"><span class="nav-index">06</span><span class="sr-only">Dormência e gemulação</span></a></li>
+  <li><a href="#reproducao"><span class="nav-index">07</span><span class="sr-only">Reprodução</span></a></li>
+  <li><a href="#evolucao"><span class="nav-index">08</span><span class="sr-only">Evolução</span></a></li>
+  <li><a href="#importancia"><span class="nav-index">09</span><span class="sr-only">Importância</span></a></li>
+  <li><a href="#referencias"><span class="nav-index">10</span><span class="sr-only">Referências</span></a></li>
+</ul>
+
+            <a class="main-nav__cta" href="#caracteristicas">Começar estudo</a>
+          </div>
         </nav>
       </div>
     </header>
 
-    <main>
-      <section class="hero" id="inicio">
-        <div class="hero__content">
-          <p class="hero__eyebrow">Trabalho de Biologia 2025</p>
-          <h1>Poríferos: diversidade, forma e função</h1>
-          <p class="hero__lead">
-            Conheça o grupo animal mais antigo do planeta, compreendendo como sua estrutura simples garante estratégias eficientes de filtragem, defesa e sobrevivência em ambientes marinhos.
+    
+<main class="magazine" data-current-page="0">
+  <div class="magazine__viewport" role="group" aria-live="polite">
+    <section class="hero" id="inicio">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Filo Porifera • Biologia 2025</p>
+        <h1>Poríferos: diversidade, forma e função</h1>
+        <p class="hero__lead">
+          Explore a jornada completa pelas esponjas: da característica diagnóstica às estratégias de reprodução, evolução e importância biotecnológica. Cada página reúne os tópicos essenciais do PDF original do trabalho.
+        </p>
+        <a class="hero__cta" href="#diagnostica">Começar leitura</a>
+        <ul class="hero__details" aria-label="Destaques rápidos">
+          <li>
+            <span aria-hidden="true"></span>
+            <div>Primeiro filo animal a se diversificar nos oceanos, com <strong>600 milhões</strong> de anos de história.</div>
+          </li>
+          <li>
+            <span aria-hidden="true"></span>
+            <div><strong>+8 mil espécies</strong> descritas e estimativa de outras 7 mil aguardando registro científico.</div>
+          </li>
+          <li>
+            <span aria-hidden="true"></span>
+            <div>Células totipotentes garantem <strong>regeneração e plasticidade</strong> sem formar tecidos verdadeiros.</div>
+          </li>
+        </ul>
+      </div>
+      <figure class="hero__media">
+        <img src="assets/images/esponja-amarela.jpg" alt="Fotografia de esponjas tubulares amarelas em um recife" />
+      </figure>
+    </section>
+
+    <section id="diagnostica" class="section section--light">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Diagnóstico</span>
+          <h2>Característica diagnóstica dos poríferos</h2>
+          <p>
+            Esponjas apresentam colares de microvilosidades ao redor de flagelos, formando câmaras filtradoras que podem surgir de células isoladas ou de sincícios. Esse arranjo garante fluxo contínuo de água e captura eficiente de partículas.
           </p>
-          <a class="hero__cta" href="#introducao">Explorar conteúdo</a>
-          <ul class="hero__details" aria-label="Destaques rápidos">
-            <li>
-              <span aria-hidden="true"></span>
-              <div><strong>600 milhões</strong> de anos de história evolutiva documentada em fósseis marinhos.</div>
-            </li>
-            <li>
-              <span aria-hidden="true"></span>
-              <div><strong>10.000+</strong> espécies descritas, distribuídas em ambientes tropicais, temperados e profundos.</div>
-            </li>
-            <li>
-              <span aria-hidden="true"></span>
-              <div>
-                Estruturas modulares capazes de <strong>regenerar tecidos</strong> e reorganizar células após danos.
-              </div>
-            </li>
+        </div>
+        <div class="content-split">
+          <div class="content-split__primary">
+            <ul class="bullet-list">
+              <li><strong>Colares:</strong> anéis de pequenas estruturas ao redor de cada coanócito, ampliando a área de captura.</li>
+              <li><strong>Microvilosidades:</strong> dobras membranares semelhantes a “pelinhos” que aumentam o contato com a água.</li>
+              <li><strong>Coanócitos:</strong> células flageladas cujo movimento direciona a água pelo corpo da esponja.</li>
+              <li><strong>Flagelo:</strong> o “rabinho” móvel responsável por gerar corrente hídrica.</li>
+              <li><strong>Células isoladas:</strong> funcionam de maneira autônoma, especializando-se conforme a necessidade.</li>
+              <li><strong>Sincícios:</strong> fusões celulares que compartilham o citoplasma, formando estruturas multinucleadas.</li>
+            </ul>
+          </div>
+          <aside class="content-split__aside">
+            <div class="callout callout--highlight">
+              <h3>Porque isso importa?</h3>
+              <p>
+                O colar de microvilosidades é a assinatura celular de Porifera. Ele relaciona esponjas aos coanoflagelados — protistas coloniais apontados como ancestrais do filo — e evidencia a forma como filtração, alimentação e respiração acontecem sem órgãos dedicados.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="gerais" class="section">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Visão geral</span>
+          <h2>Características gerais das esponjas</h2>
+          <p>
+            Mesmo sem tecidos verdadeiros, os poríferos exibem grande plasticidade corporal e adaptação ecológica. A seguir, o resumo dos principais pontos apresentados no PDF.
+          </p>
+        </div>
+        <ul class="bullet-list bullet-list--columns">
+          <li>Planos corporais muito distintos de outros animais, dificultando comparações diretas.</li>
+          <li>Inexistência de esponjas terrestres; apenas 2% das espécies vivem em água doce.</li>
+          <li>Ausência de nervos e musculatura convencionais; movimento ocorre por amebócitos.</li>
+          <li>Predominância de formas assimétricas, embora ocorram exceções radialmente organizadas.</li>
+          <li>Não possuem órgãos digestivos, respiratórios, sensoriais ou excretores especializados.</li>
+          <li>Processos fisiológicos lembram protozoários; contudo, são metazoários multicelulares.</li>
+          <li>Mais de 8.000 espécies descritas, com projeção de 7.000 a serem descobertas.</li>
+          <li>Descendem de protozoários flagelados coloniais (coanoflagelados).</li>
+          <li>Alimentação por filtração: a água entra pelos poros e circula pelos canais internos.</li>
+          <li>Organismos bentônicos e sésseis, fixos ao substrato.</li>
+          <li>Animais basais com células totipotentes e mais de 20 tipos celulares diferenciados.</li>
+          <li>Podem alcançar até 1 metro de altura e fornecer abrigo para diversos organismos.</li>
+          <li>Partes do corpo deslocam-se milímetros por hora graças ao movimento coordenado de amebócitos.</li>
+          <li>Apresentam grande variedade de cores determinadas por microrganismos simbiontes.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="anatomia" class="section section--alt">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Anatomia</span>
+          <h2>Arquitetura corporal e grupos celulares</h2>
+          <p>
+            O corpo das esponjas funciona como um sistema de canais. Diferentes tipos celulares compartilham funções de suporte, filtragem e secreção para manter o fluxo contínuo de água.
+          </p>
+        </div>
+        <div class="definition-grid">
+          <div>
+            <h3>Partes anatômicas</h3>
+            <dl>
+              <dt>Mesoílo</dt>
+              <dd>Matriz gelatinosa que separa as camadas celulares e abriga fibras e células móveis.</dd>
+              <dt>Epiderme / pinacoderme</dt>
+              <dd>Camada externa de pinacócitos; realiza trocas gasosas e libera resíduos por difusão.</dd>
+              <dt>Poros (ostíolos)</dt>
+              <dd>Aberturas circulares que permitem a entrada de água para o interior do corpo.</dd>
+              <dt>Espongiocele</dt>
+              <dd>Cavidade interna por onde a água circula antes de ser expulsa.</dd>
+              <dt>Ósculo</dt>
+              <dd>Abertura superior de saída da água; esponjas mais complexas podem ter vários ósculos.</dd>
+            </dl>
+          </div>
+          <div>
+            <h3>Principais grupos celulares</h3>
+            <dl>
+              <dt>Epiteliocitos</dt>
+              <dd>Incluem pinacócitos, porócitos, actinócitos e coanócitos; revestem e modulam o fluxo hídrico.</dd>
+              <dt>Coanócitos</dt>
+              <dd>Células com colar de microvilosidades responsáveis pela filtração e movimentação da água.</dd>
+              <dt>Pinacócitos</dt>
+              <dd>Células externas achatadas; contrações alteram o formato da esponja e auxiliam na proteção.</dd>
+              <dt>Porócitos</dt>
+              <dd>Células tubulares que formam os poros, regulando a entrada de água.</dd>
+              <dt>Actinócitos</dt>
+              <dd>Semelhantes a células musculares; controlam a abertura do ósculo e a contração corporal.</dd>
+              <dt>Amebócitos</dt>
+              <dd>Abrangem arqueócitos, cistenócitos e bacteriócitos; transportam nutrientes e podem diferenciar-se.</dd>
+              <dt>Mecanócitos</dt>
+              <dd>Incluem esclerócitos, espongiócitos, colenócitos e lofócitos; produzem espículas e fibras de sustentação.</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tipos" class="section">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Arquitetura</span>
+          <h2>Tipos corporais de esponja</h2>
+          <p>
+            A complexidade dos canais internos determina a eficiência de filtração. O PDF descreve os principais planos corporais abaixo.
+          </p>
+        </div>
+        <ul class="bullet-list bullet-list--stacked">
+          <li><strong>Áscon (asconoide):</strong> corpo cilíndrico oco, um único ósculo e cavidades internas revestidas por coanócitos.</li>
+          <li><strong>Solenóide:</strong> ausência de câmaras coanocitárias; átrio revestido por pinacoderme.</li>
+          <li><strong>Sycon (siconoide):</strong> paredes espessas com pregas que filtram a água antes de chegar ao átrio.</li>
+          <li><strong>Sileibide:</strong> câmaras coanocitárias ramificadas que aumentam a área de filtração.</li>
+          <li><strong>Leucon (leuconoide):</strong> a forma mais complexa; canais direcionam a água para câmaras flageladas interligadas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="classes" class="section section--light">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Classificação</span>
+          <h2>Classes de Porifera</h2>
+          <p>
+            A composição das espículas e a organização das câmaras flageladas definem os grupos taxonômicos atuais e históricos.
+          </p>
+        </div>
+        <ul class="bullet-list bullet-list--stacked">
+          <li><strong>Calcarea:</strong> espículas de carbonato de cálcio; podem apresentar planos áscon, sycon e leucon. Coanócitos assumem funções totipotentes.</li>
+          <li><strong>Demospongiae:</strong> representam 80% das espécies; espículas de sílica e espongina flexível, abrangendo todas as esponjas de água doce.</li>
+          <li><strong>Hexactinellida:</strong> “esponjas-de-vidro”; espículas silicosas hexactinas interconectadas, corpo sinicial e sem pinacoderme.</li>
+          <li><strong>Homoscleromorpha:</strong> menos de 100 espécies; podem perder espículas, possuem membrana basal contínua e células epiteliais ciliadas.</li>
+          <li><strong>Archaeocyatha:</strong> grupo fóssil que formava recifes calcários no Cambriano.</li>
+          <li><strong>Escleroesponjas:</strong> categoria histórica para demospongias leuconoides que secretam maciços de carbonato de cálcio.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="dormencia" class="section">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Estratégias de sobrevivência</span>
+          <h2>Dormência e gemulação</h2>
+          <p>
+            Gemas internas permitem que esponjas atravessem períodos críticos, resistindo à dessecação e ao frio extremo.
+          </p>
+        </div>
+        <ul class="bullet-list bullet-list--stacked">
+          <li>Formação de gêmulas em épocas desfavoráveis, compostas por arqueócitos ricos em nutrientes.</li>
+          <li>Gêmulas resistem a dessecação, congelamento e anoxia, superando a tolerância do indivíduo adulto.</li>
+          <li>Passam por vernalização: necessitam de meses sob baixas temperaturas antes da eclosão.</li>
+          <li>Permitem longos períodos sem desenvolvimento; gêmulas podem permanecer viáveis por até 25 anos.</li>
+          <li>Estratégia típica de água doce, reduzindo o organismo a uma pequena massa celular protegida.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="reproducao" class="section section--alt">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Reprodução</span>
+          <h2>Modos reprodutivos dos poríferos</h2>
+          <p>
+            As esponjas conciliam mecanismos assexuados e sexuados, com controle fisiológico para evitar autofecundação.
+          </p>
+        </div>
+        <ul class="bullet-list bullet-list--stacked">
+          <li>Reprodução assexuada por gemulação, brotamento, fragmentação ou corpos de redução.</li>
+          <li>Hermafroditas simultâneos com fertilização cruzada mediada pelo fluxo de água.</li>
+          <li>Larvas flageladas nadam livremente até encontrarem substrato adequado para fixação.</li>
+          <li>Registros de 25 espécies autoincompatíveis, capazes de reconhecer gametas de outros indivíduos.</li>
+          <li>Espermatozoides capturados por coanócitos; gametas originam-se de arqueócitos ou coanócitos modificados.</li>
+          <li>Espécies ovíparas desenvolvem embriões externamente; calcárias e demospongias formam celoblástulas.</li>
+          <li>Algumas calcárias invertem as células após desenvolvimento interno dos flagelos.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="evolucao" class="section">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Evolução</span>
+          <h2>Linhagem ancestral e hipóteses evolutivas</h2>
+          <p>
+            O registro fóssil e a comparação com coanoflagelados ajudam a reconstruir a história do grupo.
+          </p>
+        </div>
+        <ul class="bullet-list bullet-list--stacked">
+          <li>Fósseis mais antigos datam de 500 milhões de anos (Período Cambriano).</li>
+          <li>Flagelos dos coanócitos são homólogos aos dos coanoflagelados.</li>
+          <li>Evolução impulsionada pela maximização do fluxo de água e da superfície de absorção.</li>
+          <li>Discussões apontam leuconoides como forma derivada complexa ou como ancestral de planos simplificados.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="importancia" class="section section--light">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Importância</span>
+          <h2>Relevância química, medicinal e tecnológica</h2>
+          <p>
+            Compostos derivados das esponjas inspiraram pesquisas farmacológicas e inovações de materiais.
+          </p>
+        </div>
+        <div class="content-split">
+          <ul class="bullet-list bullet-list--stacked">
+            <li><strong>Medicinal:</strong> produção de moléculas com ação antibiótica, antiviral, anti-inflamatória e antimitótica, como a cribrostatina.</li>
+            <li><strong>Química:</strong> substâncias que inibem a fixação de larvas em cascos de navios e estruturas submersas.</li>
+            <li><strong>Tecnológica:</strong> fibras de sílica de esponjas-de-vidro apresentam orientação luminosa comparável às fibras ópticas.</li>
+            <li><strong>Ecológica:</strong> fornecem abrigo a uma grande diversidade de animais, bactérias e cianobactérias simbiontes.</li>
           </ul>
         </div>
-        <figure class="hero__media">
-          <img src="assets/images/esponja-amarela.jpg" alt="Fotografia de esponjas tubulares amarelas em um recife" />
-        </figure>
-      </section>
+      </div>
+    </section>
 
-      <section id="introducao" class="section section--light">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Introdução</span>
-            <h2>O que caracteriza os poríferos?</h2>
-            <p>
-              Poríferos são animais aquáticos filtradores, o primeiro grupo pluricelular a se diversificar nos oceanos. A ausência de tecidos verdadeiros é compensada por uma organização celular altamente eficiente, baseada em poros que controlam a circulação da água.
-            </p>
-          </div>
-          <div class="section__grid">
-            <div>
-              <p>
-                O corpo das esponjas é formado por um conjunto de câmaras interconectadas. A água entra através dos óstios, percorre canais revestidos por coanócitos e sai pelo ósculo. Esse fluxo contínuo garante trocas gasosas, captura de alimentos e remoção de resíduos.
-              </p>
-              <p>
-                Dependendo do ambiente, as esponjas podem apresentar simbiose com algas, colorações vibrantes e formas variadas — de tubos a taças gigantes. Essa plasticidade estrutural contribui para seu sucesso ecológico e longevidade evolutiva.
-              </p>
-            </div>
-            <ul class="fact-list" aria-label="Fatos essenciais">
-              <li><strong>Estratégia filtradora:</strong> até 20.000 vezes o volume corporal filtrado diariamente.</li>
-              <li><strong>Espículas:</strong> estruturas silicosas ou calcárias que sustentam e protegem o corpo.</li>
-              <li><strong>Arqueócitos:</strong> células-tronco responsáveis por regeneração e transporte de nutrientes.</li>
-            </ul>
-          </div>
+    <section id="referencias" class="section">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Referências</span>
+          <h2>Fontes utilizadas</h2>
         </div>
-      </section>
+        <ul class="reference-list">
+          <li>Brusca, R. C.; Moore, W.; Shuster, S. M. <em>Invertebrados</em>. 3. ed. Rio de Janeiro: Guanabara Koogan, 2018.</li>
+          <li>Fransozo, A. <em>Zoologia dos Invertebrados</em>. Rio de Janeiro: Roca, 2016.</li>
+          <li>Pechenik, J. A. <em>Biologia dos Invertebrados</em>. 7. ed. Porto Alegre: AMGH, 2016.</li>
+          <li>Urry, L. A. <em>et al.</em> <em>Biologia de Campbell</em>. 12. ed. Porto Alegre: Artmed, 2022.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <button class="magazine__edge-control magazine__edge-control--prev" type="button" data-direction="prev" aria-label="Página anterior">
+    <span aria-hidden="true">&lsaquo;</span>
+  </button>
+  <button class="magazine__edge-control magazine__edge-control--next" type="button" data-direction="next" aria-label="Próxima página">
+    <span aria-hidden="true">&rsaquo;</span>
+  </button>
+  <div class="magazine__controls" aria-label="Navegação da revista">
+    <button class="magazine__button magazine__button--prev" type="button" data-direction="prev" disabled>
+      <span aria-hidden="true">←</span>
+      <span>Voltar página</span>
+    </button>
+    <p class="magazine__status" id="magazine-status" aria-live="polite">
+      Página <span class="magazine__current">1</span> de <span class="magazine__total">1</span>
+    </p>
+    <button class="magazine__button magazine__button--next" type="button" data-direction="next">
+      <span>Avançar página</span>
+      <span aria-hidden="true">→</span>
+    </button>
+  </div>
+  <div class="magazine__progress" aria-hidden="true">
+    <div class="magazine__progress-bar"></div>
+  </div>
+</main>
 
-      <section id="caracteristicas" class="section">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Características gerais</span>
-            <h2>Vida sem tecidos, mas com muita estratégia</h2>
-            <p>
-              Esponjas não possuem nervos, músculos ou órgãos especializados, mas compensam com uma organização celular incrivelmente plástica. Mesmo sem tecidos verdadeiros, mais de vinte tipos celulares cooperam para filtrar água, regenerar o corpo e sustentar comunidades inteiras de recifes.
-            </p>
-          </div>
-          <div class="section__grid section__grid--balanced">
-            <div>
-              <p>
-                Os poríferos são animais <strong>filtradores bentônicos e sésseis</strong>: permanecem fixos ao substrato enquanto o batimento de flagelos move a água pelos poros externos (ostíolos) até a espongiocele interna. Cerca de 2% das espécies habitam água doce; as demais vivem em mares rasos, profundezas frias ou cavernas escuras.
-              </p>
-              <p>
-                O corpo pode chegar a mais de um metro de altura, com cores influenciadas por microrganismos simbiontes. Derivadas de colônias de coanoflagelados, as esponjas exibem planos corporais distintos do restante dos metazoários, o que dificulta comparações com animais mais complexos.
-              </p>
-              <div class="callout" role="note">
-                <h3>Bob Esponja?</h3>
-                <p>
-                  Na cultura pop a referência é inevitável, mas na biologia real, a diversidade estrutural das esponjas desafia qualquer modelo único. Cada espécie ajusta sua anatomia para maximizar o fluxo de água e o aproveitamento de partículas alimentares.
-                </p>
-              </div>
-            </div>
-            <div>
-              <ul class="checklist" aria-label="Resumo das principais características">
-                <li>Sem tecidos ou órgãos; células totipotentes reorganizam funções conforme a necessidade.</li>
-                <li>Fluxo de água contínuo garante respiração, alimentação e excreção por difusão.</li>
-                <li>Capazes de regenerar-se a partir de fragmentos contendo arqueócitos.</li>
-                <li>Movimentação discreta: partes do corpo podem deslocar-se milímetros por hora via amebócitos.</li>
-                <li>Mais de 8.000 espécies descritas, com estimativa de outras 7.000 a descobrir.</li>
-                <li>Ausência de espécies terrestres; habitats marinhos e dulcícolas selecionam formas variadas.</li>
-                <li>Sem órgãos reprodutivos, digestivos, respiratórios, sensoriais ou excretores especializados.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="classificacao" class="section">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Classificação</span>
-            <h2>Principais classes de poríferos</h2>
-            <p>
-              A composição das espículas, a presença de espongina e o arranjo das câmaras flageladas diferenciam os grandes grupos de esponjas. A classificação moderna destaca três classes viventes e reconhece linhagens fósseis que povoaram mares paleozoicos.
-            </p>
-          </div>
-          <div class="feature-grid">
-            <article class="feature-card">
-              <h3>Calcarea</h3>
-              <p>
-                Espículas exclusivamente calcárias, com indivíduos asconoides, siconoides e leuconoides. Nessa classe, coanócitos assumem funções totipotentes, enquanto arqueócitos permanecem restritos ao transporte de nutrientes.
-              </p>
-            </article>
-            <article class="feature-card">
-              <h3>Hexactinellida</h3>
-              <p>
-                Esponjas-de-vidro com sincícios multinucleados e espículas silicosas hexactinas. Colonizam ambientes frios e profundos, produzindo fibras que conduzem luz com eficiência comparável à de fibras ópticas.
-              </p>
-            </article>
-            <article class="feature-card">
-              <h3>Demospongiae</h3>
-              <p>
-                Reúnem 80% das espécies atuais. Suas espículas silicosas combinam-se a espongina flexível, permitindo corpos massivos, incluindo todas as esponjas de água doce e algumas escleroesponjas sem óstios aparentes.
-              </p>
-            </article>
-          </div>
-          <div class="class-notes">
-            <p>
-              <strong>Homoscleromorpha</strong> soma menos de 100 espécies, apresenta membrana basal contínua e células epiteliais ciliadas. <strong>Archaeocyatha</strong> construiu recifes calcários no Cambriano, mas foi extinta. A categoria histórica <strong>Escleroesponjas</strong> descrevia demospongias leuconoides que secretam maciços de carbonato de cálcio.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="estrutura" class="section section--alt">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Estrutura</span>
-            <h2>Explore a anatomia de uma esponja real</h2>
-            <p>
-              A parede corporal é formada por camadas celulares frouxas. A pinacoderme externa conduz trocas gasosas por difusão, enquanto a coanoderme interna utiliza coanócitos para gerar o fluxo hídrico. Entre elas, o mesoílo gelatinoso concentra células móveis, fibras de espongina e espículas.
-            </p>
-          </div>
-          <div class="section__grid section__grid--balanced">
-            <div>
-              <div class="callout callout--highlight" role="note">
-                <h3>Característica diagnóstica</h3>
-                <p>
-                  Cada coanócito apresenta um colar de microvilosidades envolvendo o flagelo — o “rabinho” que se mexe para impulsionar a água. Essa borda atua como peneira microscópica que captura partículas alimentares e direciona o fluxo. Os colares surgem tanto em células isoladas quanto em sincícios que compartilham uma mesma membrana.
-                </p>
-              </div>
-              <p>
-                No exterior, porócitos cilíndricos perfuram a pinacoderme formando óstios reguláveis, enquanto actinócitos controlam a abertura do ósculo como verdadeiros “músculos” da esponja. Internamente, arqueócitos totipotentes navegam pelo mesoílo transportando nutrientes e originando outros tipos celulares.
-              </p>
-            </div>
-            <div>
-              <div class="data-list" aria-label="Grupos celulares dos poríferos">
-                <h3>Principais grupos celulares</h3>
-                <ul>
-                  <li><strong>Epiteliócitos:</strong> pinacócitos, porócitos, actinócitos e coanócitos moldam a interface com a água.</li>
-                  <li><strong>Amebócitos:</strong> arqueócitos, cistenócitos e bacteriócitos circulam pelo mesoílo, estocam nutrientes e garantem simbioses.</li>
-                  <li><strong>Mecanócitos:</strong> esclerócitos, espongiócitos, colenócitos e lofócitos produzem espículas, espongina e o colágeno de sustentação.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="diagram">
-            <figure class="diagram__visual" aria-label="Fotografia com pontos interativos de uma esponja marinha">
-              <img src="assets/images/esponja-verde.jpg" alt="Detalhe de uma esponja marinha verde com textura porosa" />
-              <button class="hotspot" style="--x:74%; --y:18%;" data-title="Ósculo" data-description="Abertura principal que expulsa a água filtrada, controlando a circulação interna." aria-pressed="false" type="button">
-                <span class="sr-only">Ósculo</span>
-              </button>
-              <button class="hotspot" style="--x:40%; --y:42%;" data-title="Coanócitos" data-description="Células flageladas que geram correntes de água e capturam nutrientes microscópicos." aria-pressed="false" type="button">
-                <span class="sr-only">Coanócitos</span>
-              </button>
-              <button class="hotspot" style="--x:84%; --y:54%;" data-title="Espículas" data-description="Estruturas rígidas que formam o esqueleto interno e dificultam a predação." aria-pressed="false" type="button">
-                <span class="sr-only">Espículas</span>
-              </button>
-              <button class="hotspot" style="--x:32%; --y:58%;" data-title="Espongiocele" data-description="Cavidade interna onde a água filtrada se acumula antes de deixar o corpo." aria-pressed="false" type="button">
-                <span class="sr-only">Espongiocele</span>
-              </button>
-              <button class="hotspot" style="--x:58%; --y:78%;" data-title="Porócitos" data-description="Células tubulares que formam os óstios, regulando a entrada de água rica em partículas." aria-pressed="false" type="button">
-                <span class="sr-only">Porócitos</span>
-              </button>
-            </figure>
-            <aside class="diagram__info" aria-live="polite">
-              <h3 id="diagram-title">Selecione uma estrutura</h3>
-              <p id="diagram-description">
-                Utilize as marcações para descobrir como as células se organizam e garantem o fluxo contínuo de água que alimenta a esponja.
-              </p>
-            </aside>
-          </div>
-          <div class="diagram__supplement">
-            <figure class="supplement-figure">
-              <div class="supplement-figure__image">
-                <img src="assets/images/Screenshot_7.png" alt="Esquema anatômico de uma esponja com setas indicando suas estruturas" />
-                <button class="legend-hotspot legend-popup-trigger" type="button" aria-pressed="false" data-term="Ósculo" data-description="Abertura exalante que reúne toda a água filtrada. O ósculo pode variar de diâmetro conforme a atividade da esponja e libera sedimentos, dióxido de carbono e gametas no ambiente." data-image="assets/images/part-osculo.jpg" data-image-alt="Close-up de um ósculo de esponja de água doce" data-credit="Imagem: Lamiot / Wikimedia Commons (CC BY-SA 4.0)" style="--x:51%; --y:8%;" aria-haspopup="dialog" aria-label="Ver detalhes sobre Ósculo">
-                  <span aria-hidden="true">+</span>
-                </button>
-                <button class="legend-hotspot legend-popup-trigger" type="button" aria-pressed="false" data-term="Mesohilo" data-description="Matriz gelatinosa rica em colágeno que ocupa o interior do corpo. Nela circulam espículas, fibras de espongina e células totipotentes responsáveis por cicatrização, crescimento e armazenamento de nutrientes." data-image="assets/images/part-mesohilo.jpg" data-image-alt="Secção delgada mostrando o mesohilo de uma esponja" data-credit="Imagem: Peng / Wikimedia Commons (CC BY-SA 3.0)" style="--x:54%; --y:26%;" aria-haspopup="dialog" aria-label="Ver detalhes sobre Mesohilo">
-                  <span aria-hidden="true">+</span>
-                </button>
-                <button class="legend-hotspot legend-popup-trigger" type="button" aria-pressed="false" data-term="Porócitos" data-description="Células tubulares contráteis que formam os óstios. Ao dilatar ou contrair suas paredes controlam quanto volume de água penetra no corpo, ajustando o ritmo de filtragem." data-image="assets/images/part-porocitos.jpg" data-image-alt="Superfície de esponja de água doce repleta de poros" data-credit="Imagem: Peng / Wikimedia Commons (CC BY-SA 3.0)" style="--x:27%; --y:34%;" aria-haspopup="dialog" aria-label="Ver detalhes sobre Porócitos">
-                  <span aria-hidden="true">+</span>
-                </button>
-                <button class="legend-hotspot legend-popup-trigger" type="button" aria-pressed="false" data-term="Fluxo de água" data-description="Corrente contínua gerada pelo bater dos flagelos dos coanócitos. A água entra pelos óstios, atravessa câmaras filtradoras e sai pressurizada pelo ósculo, renovando oxigênio e levando resíduos." data-image="assets/images/part-fluxo-agua.jpg" data-image-alt="Esponja marinha expelindo fluxo de água pelo ósculo" data-credit="Imagem: jkirkhart35 / Wikimedia Commons (CC BY 2.0)" style="--x:18%; --y:46%;" aria-haspopup="dialog" aria-label="Ver detalhes sobre o fluxo de água">
-                  <span aria-hidden="true">+</span>
-                </button>
-                <button class="legend-hotspot legend-popup-trigger" type="button" aria-pressed="false" data-term="Espículas" data-description="Elementos esqueléticos microscópicos de sílica ou carbonato de cálcio. As espículas reforçam o corpo e desencorajam predadores com suas formas espinhosas." data-image="assets/images/part-espiculas.jpg" data-image-alt="Micrografia eletrônica mostrando espículas de esponja" data-credit="Imagem: Berezovska / Wikimedia Commons (CC BY-SA 4.0)" style="--x:78%; --y:31%;" aria-haspopup="dialog" aria-label="Ver detalhes sobre Espículas">
-                  <span aria-hidden="true">+</span>
-                </button>
-                <button class="legend-hotspot legend-popup-trigger" type="button" aria-pressed="false" data-term="Espongiocele" data-description="Cavidade central por onde a água filtrada se acumula antes de ser expulsa. Seu volume pode aumentar ou diminuir conforme o padrão de bombeamento." data-image="assets/images/part-espongiocele.jpg" data-image-alt="Micrografia transversal destacando a espongiocele" data-credit="Imagem: M. Readey / Wikimedia Commons (CC BY-SA 4.0)" style="--x:53%; --y:51%;" aria-haspopup="dialog" aria-label="Ver detalhes sobre Espongiocele">
-                  <span aria-hidden="true">+</span>
-                </button>
-                <button class="legend-hotspot legend-popup-trigger" type="button" aria-pressed="false" data-term="Coanócitos" data-description="Células flageladas com colar de microvilosidades. Coanócitos capturam partículas alimentares, geram a corrente hidráulica e podem se transformar em gametas." data-image="assets/images/part-coanocito.jpg" data-image-alt="Micrografia de coanócitos com colares de microvilosidades" data-credit="Imagem: Rohit Kumar Sengupta / Wikimedia Commons (CC BY-SA 4.0)" style="--x:63%; --y:62%;" aria-haspopup="dialog" aria-label="Ver detalhes sobre Coanócitos">
-                  <span aria-hidden="true">+</span>
-                </button>
-                <button class="legend-hotspot legend-popup-trigger" type="button" aria-pressed="false" data-term="Amebócitos" data-description="Células ameboides pluripotentes que circulam pelo mesohilo transportando nutrientes, formando espículas e regenerando tecidos danificados." data-image="assets/images/part-amebocitos.png" data-image-alt="Micrografia de diferentes tipos celulares de uma esponja" data-credit="Imagem: Philcha / Wikimedia Commons (domínio público)" style="--x:44%; --y:64%;" aria-haspopup="dialog" aria-label="Ver detalhes sobre Amebócitos">
-                  <span aria-hidden="true">+</span>
-                </button>
-                <button class="legend-hotspot legend-popup-trigger" type="button" aria-pressed="false" data-term="Pinacoderme" data-description="Revestimento externo formado por pinacócitos achatados. Essa camada regula a forma do corpo, protege contra sedimentos e abriga poros contráteis." data-image="assets/images/part-pinacoderme.jpg" data-image-alt="Superfície externa de esponja com textura de rede" data-credit="Imagem: James St. John / Wikimedia Commons (CC BY 2.0)" style="--x:50%; --y:86%;" aria-haspopup="dialog" aria-label="Ver detalhes sobre Pinacoderme">
-                  <span aria-hidden="true">+</span>
-                </button>
-              </div>
-              <figcaption class="supplement-figure__caption">
-                <p>Legenda interativa da ilustração:</p>
-                <ul class="figure-legend" role="list">
-                  <li>
-                    <button class="legend-popup-trigger" type="button" aria-pressed="false" data-term="Ósculo" data-description="Abertura exalante que reúne toda a água filtrada. O ósculo pode variar de diâmetro conforme a atividade da esponja e libera sedimentos, dióxido de carbono e gametas no ambiente." data-image="assets/images/part-osculo.jpg" data-image-alt="Close-up de um ósculo de esponja de água doce" data-credit="Imagem: Lamiot / Wikimedia Commons (CC BY-SA 4.0)" aria-haspopup="dialog">Ósculo</button>
-                  </li>
-                  <li>
-                    <button class="legend-popup-trigger" type="button" aria-pressed="false" data-term="Mesohilo" data-description="Matriz gelatinosa rica em colágeno que ocupa o interior do corpo. Nela circulam espículas, fibras de espongina e células totipotentes responsáveis por cicatrização, crescimento e armazenamento de nutrientes." data-image="assets/images/part-mesohilo.jpg" data-image-alt="Secção delgada mostrando o mesohilo de uma esponja" data-credit="Imagem: Peng / Wikimedia Commons (CC BY-SA 3.0)" aria-haspopup="dialog">Mesohilo</button>
-                  </li>
-                  <li>
-                    <button class="legend-popup-trigger" type="button" aria-pressed="false" data-term="Porócitos" data-description="Células tubulares contráteis que formam os óstios. Ao dilatar ou contrair suas paredes controlam quanto volume de água penetra no corpo, ajustando o ritmo de filtragem." data-image="assets/images/part-porocitos.jpg" data-image-alt="Superfície de esponja de água doce repleta de poros" data-credit="Imagem: Peng / Wikimedia Commons (CC BY-SA 3.0)" aria-haspopup="dialog">Porócitos</button>
-                  </li>
-                  <li>
-                    <button class="legend-popup-trigger" type="button" aria-pressed="false" data-term="Fluxo de água" data-description="Corrente contínua gerada pelo bater dos flagelos dos coanócitos. A água entra pelos óstios, atravessa câmaras filtradoras e sai pressurizada pelo ósculo, renovando oxigênio e levando resíduos." data-image="assets/images/part-fluxo-agua.jpg" data-image-alt="Esponja marinha expelindo fluxo de água pelo ósculo" data-credit="Imagem: jkirkhart35 / Wikimedia Commons (CC BY 2.0)" aria-haspopup="dialog">Fluxo de água</button>
-                  </li>
-                  <li>
-                    <button class="legend-popup-trigger" type="button" aria-pressed="false" data-term="Espículas" data-description="Elementos esqueléticos microscópicos de sílica ou carbonato de cálcio. As espículas reforçam o corpo e desencorajam predadores com suas formas espinhosas." data-image="assets/images/part-espiculas.jpg" data-image-alt="Micrografia eletrônica mostrando espículas de esponja" data-credit="Imagem: Berezovska / Wikimedia Commons (CC BY-SA 4.0)" aria-haspopup="dialog">Espículas</button>
-                  </li>
-                  <li>
-                    <button class="legend-popup-trigger" type="button" aria-pressed="false" data-term="Espongiocele" data-description="Cavidade central por onde a água filtrada se acumula antes de ser expulsa. Seu volume pode aumentar ou diminuir conforme o padrão de bombeamento." data-image="assets/images/part-espongiocele.jpg" data-image-alt="Micrografia transversal destacando a espongiocele" data-credit="Imagem: M. Readey / Wikimedia Commons (CC BY-SA 4.0)" aria-haspopup="dialog">Espongiocele</button>
-                  </li>
-                  <li>
-                    <button class="legend-popup-trigger" type="button" aria-pressed="false" data-term="Coanócitos" data-description="Células flageladas com colar de microvilosidades. Coanócitos capturam partículas alimentares, geram a corrente hidráulica e podem se transformar em gametas." data-image="assets/images/part-coanocito.jpg" data-image-alt="Micrografia de coanócitos com colares de microvilosidades" data-credit="Imagem: Rohit Kumar Sengupta / Wikimedia Commons (CC BY-SA 4.0)" aria-haspopup="dialog">Coanócitos</button>
-                  </li>
-                  <li>
-                    <button class="legend-popup-trigger" type="button" aria-pressed="false" data-term="Amebócitos" data-description="Células ameboides pluripotentes que circulam pelo mesohilo transportando nutrientes, formando espículas e regenerando tecidos danificados." data-image="assets/images/part-amebocitos.png" data-image-alt="Micrografia de diferentes tipos celulares de uma esponja" data-credit="Imagem: Philcha / Wikimedia Commons (domínio público)" aria-haspopup="dialog">Amebócitos</button>
-                  </li>
-                  <li>
-                    <button class="legend-popup-trigger" type="button" aria-pressed="false" data-term="Pinacoderme" data-description="Revestimento externo formado por pinacócitos achatados. Essa camada regula a forma do corpo, protege contra sedimentos e abriga poros contráteis." data-image="assets/images/part-pinacoderme.jpg" data-image-alt="Superfície externa de esponja com textura de rede" data-credit="Imagem: James St. John / Wikimedia Commons (CC BY 2.0)" aria-haspopup="dialog">Pinacoderme</button>
-                  </li>
-                </ul>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section id="tipos" class="section section--light">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Planos corporais</span>
-            <h2>Como o fluxo de água define cada forma</h2>
-            <p>
-              A complexidade dos canais filtradores aumenta do tipo áscon para o leucon, ampliando a superfície de coanócitos e a eficiência de captura de partículas. Essa progressão não é necessariamente evolutiva, mas reflete adaptações ao ambiente.
-            </p>
-          </div>
-          <div class="type-grid">
-            <article class="type-card">
-              <h3>Áscon (asconoide)</h3>
-              <p>
-                Corpo cilíndrico oco com parede fina. A água entra por porócitos diretamente para a espongiocele, toda revestida por coanócitos.
-              </p>
-            </article>
-            <article class="type-card">
-              <h3>Solenóide</h3>
-              <p>
-                Possui átrio com pinacoderme e canais alongados que conduzem a água. É uma variação intermediária com filtragem mais direcionada.
-              </p>
-            </article>
-            <article class="type-card">
-              <h3>Sycon (siconoide)</h3>
-              <p>
-                Paredes espessas dobradas em câmaras radiadas. A água percorre canais incorrentes e passa por coanócitos antes de alcançar o átrio.
-              </p>
-            </article>
-            <article class="type-card">
-              <h3>Sileibide</h3>
-              <p>
-                Semelhante ao sycon, porém com câmaras coanocitárias ramificadas que aumentam a retenção de partículas microscópicas.
-              </p>
-            </article>
-            <article class="type-card">
-              <h3>Leucon (leuconoide)</h3>
-              <p>
-                Rede de canais incorrentes e eferentes que conectam inúmeras câmaras flageladas. Sustenta os maiores volumes corporais conhecidos.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="reproducao" class="section section--light">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Reprodução &amp; regeneração</span>
-            <h2>Processos que asseguram a continuidade do grupo</h2>
-          </div>
-          <div class="section__grid">
-            <div>
-              <p>
-                A reprodução sexuada ocorre com a liberação de gametas na coluna d'água. As esponjas são <strong>hermafroditas sequenciais</strong>: um indivíduo pode atuar como macho em um ciclo e fêmea no seguinte. Coanócitos capturam espermatozoides e os conduzem aos óvulos presentes no mesoílo, onde ocorre a fecundação interna.
-              </p>
-              <p>
-                Após o desenvolvimento embrionário — celoblástula em calcárias e demosponjas — surgem larvas flageladas livres que se fixam em novos substratos. Algumas espécies calcárias realizam inversão das células flageladas antes da fixação.
-              </p>
-              <p>
-                A reprodução assexuada pode ocorrer por brotamento, fragmentação e corpos de redução. Fragmentos contendo arqueócitos viáveis regeneram indivíduos completos, demonstrando plasticidade notável. Aproximadamente 25 espécies são autoincompatíveis: reconhecem seus próprios gametas e evitam a autofecundação.
-              </p>
-            </div>
-            <aside class="info-panel">
-              <h3>Capacidades notáveis</h3>
-              <p>
-                Experimentos clássicos mostram que células dissociadas podem se reagrupar e reconstruir a esponja original, evidenciando uma organização baseada em reconhecimento celular.
-              </p>
-            </aside>
-          </div>
-          <div class="dormancy-grid">
-            <div>
-              <h3>Gemulação e dormência</h3>
-              <p>
-                Muitas demospongias de água doce produzem <strong>gêmulas</strong> em épocas desfavoráveis. São cápsulas esféricas formadas por arqueócitos repletos de nutrientes, envoltos por camadas protetoras secretadas por outras células.
-              </p>
-            </div>
-            <ul>
-              <li>Suportam dessecação, anoxia e congelamento, podendo permanecer viáveis por até 25 anos.</li>
-              <li>Exigem vernalização: meses em temperaturas muito baixas antes de germinar.</li>
-              <li>Permitem que a esponja reduza-se a uma massa mínima de células durante o inverno.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="ciclo" class="section">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Ciclo de vida</span>
-            <h2>Do fluxo de água à formação de novos indivíduos</h2>
-          </div>
-          <div class="lifecycle">
-            <article class="lifecycle__step">
-              <h3>Filtragem contínua</h3>
-              <p>
-                Coanócitos capturam bactérias e partículas orgânicas enquanto o fluxo de água renova oxigênio e remove resíduos pelo ósculo.
-              </p>
-            </article>
-            <article class="lifecycle__step">
-              <h3>Produção de gametas</h3>
-              <p>
-                Arqueócitos ou coanócitos modificados originam óvulos e espermatozoides, liberados ou retidos conforme a espécie.
-              </p>
-            </article>
-            <article class="lifecycle__step">
-              <h3>Larvas livres</h3>
-              <p>
-                Após a fertilização, larvas flageladas nadam por curtos períodos antes de escolher um substrato adequado para fixação.
-              </p>
-            </article>
-            <article class="lifecycle__step">
-              <h3>Fixação e crescimento</h3>
-              <p>
-                A larva se fixa, reorganiza as camadas celulares e inicia a circulação de água, formando o corpo adulto filtrador.
-              </p>
-            </article>
-            <article class="lifecycle__step">
-              <h3>Resistência por gêmulas</h3>
-              <p>
-                Em ambientes extremos, gêmulas dormentes permanecem no sedimento até que condições favoráveis permitam o brotamento de novos indivíduos.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="ecologia" class="section">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Ecologia</span>
-            <h2>Impacto ecológico dos poríferos</h2>
-          </div>
-          <div class="timeline">
-            <article class="timeline__item">
-              <h3>Filtragem de água</h3>
-              <p>
-                Mantêm a qualidade da água ao remover partículas e microrganismos, contribuindo para o equilíbrio químico dos recifes.
-              </p>
-            </article>
-            <article class="timeline__item">
-              <h3>Engenharia de habitat</h3>
-              <p>
-                Estruturas rígidas oferecem abrigo para peixes, crustáceos e moluscos, aumentando a complexidade tridimensional do recife.
-              </p>
-            </article>
-            <article class="timeline__item">
-              <h3>Biotecnologia</h3>
-              <p>
-                Compostos bioativos produzidos por esponjas e simbiontes têm potencial farmacológico contra tumores, vírus e bactérias.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="evolucao" class="section section--light">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Evolução</span>
-            <h2>Uma linhagem com mais de 500 milhões de anos</h2>
-            <p>
-              Registros fósseis do Cambriano revelam esponjas que já exibiam espículas complexas. Comparações genéticas sustentam a hipótese de que poríferos descendem de protistas flagelados coloniais, reforçando a proximidade com coanoflagelados modernos.
-            </p>
-          </div>
-          <div class="evolution-grid">
-            <article>
-              <h3>Fluxo de água como motor evolutivo</h3>
-              <p>
-                A diversificação de câmaras flageladas maximizou a área de filtragem e sustentou corpos maiores. Modelos sugerem que sistemas leuconoides foram vantajosos em ambientes ricos em partículas, enquanto formas simplificadas podem ter surgido por redução secundária.
-              </p>
-            </article>
-            <article>
-              <h3>Plasticidade celular</h3>
-              <p>
-                Células totipotentes e sincícios permitem reorganizações rápidas após danos. Essa plasticidade facilitou colonizações repetidas de novos habitats e explica a sobrevivência do grupo a eventos de extinção em massa.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="quimica" class="section">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Importância química</span>
-            <h2>Compostos com aplicações biotecnológicas</h2>
-            <p>
-              As associações entre esponjas e microrganismos produzem moléculas capazes de deter patógenos, corroer conchas invasoras e inspirar novos materiais.
-            </p>
-          </div>
-          <div class="chemical-grid">
-            <ul>
-              <li>Matéria-prima para antibióticos, antivirais, anti-inflamatórios e agentes antimitóticos como a cribrostatina.</li>
-              <li>Substâncias que inibem a fixação de larvas em cascos de navios e estruturas submersas.</li>
-              <li>Fibras silicosas de hexactinelídeos podem superar fibras ópticas em resistência e orientação de luz.</li>
-              <li>Espongina de demospongias é cultivada comercialmente como esponja de banho em fazendas marinhas.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="videos" class="section section--alt">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Vídeos</span>
-            <h2>Assista a demonstrações e documentários curtos</h2>
-            <p>
-              Os vídeos selecionados aprofundam a filtração, a diversidade e as aplicações biotecnológicas das esponjas, complementando o material escrito.
-            </p>
-          </div>
-          <div class="video-grid">
-            <article class="video-card">
-              <div class="video-card__media">
-                <iframe
-                  src="https://www.youtube.com/embed/xyu3h2mCXoU"
-                  title="Animação sobre o fluxo de água nas esponjas"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <h3>Como as esponjas filtram água</h3>
-              <p>Animação em português que ilustra a circulação de água pelos óstios, câmaras flageladas e ósculo.</p>
-            </article>
-            <article class="video-card">
-              <div class="video-card__media">
-                <iframe
-                  src="https://www.youtube.com/embed/ZVVaodIZ6f0"
-                  title="Documentário curto sobre biodiversidade de esponjas"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <h3>Esponjas e biotecnologia marinha</h3>
-              <p>Resumo sobre compostos bioativos de demospongias e o papel ecológico em recifes tropicais.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="galeria" class="section section--alt section--gallery">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Galeria</span>
-            <h2>Retratos reais de esponjas marinhas</h2>
-            <p>
-              Passe o mouse ou toque nas imagens para revelar curiosidades sobre cada forma corporal.
-            </p>
-          </div>
-          <div class="gallery" role="list">
-            <figure
-              class="gallery__item"
-              role="listitem"
-              tabindex="0"
-              aria-haspopup="dialog"
-              aria-label="Ampliar registro de Pandaros acanthifolium"
-              data-full="assets/images/spongeguide-00102.jpg"
-              data-title="Pandaros acanthifolium"
-              data-caption="Pandaros acanthifolium com ramos robustos e ósculos alinhados, registro da equipe SpongeGuide (UNCW)."
-            >
-              <img src="assets/images/spongeguide-00102.jpg" alt="Pandaros acanthifolium com ramos grossos observados em campo pelo SpongeGuide" />
-              <figcaption>
-                Pandaros acanthifolium com ramos robustos e ósculos alinhados, registro da equipe SpongeGuide (UNCW).
-              </figcaption>
-            </figure>
-            <figure
-              class="gallery__item"
-              role="listitem"
-              tabindex="0"
-              aria-haspopup="dialog"
-              aria-label="Ampliar detalhe da textura superficial"
-              data-full="assets/images/spongeguide-00390.jpg"
-              data-title="Textura superficial"
-              data-caption="Detalhe da superfície porosa evidenciando a trama rígida que protege a esponja contra bioerosão."
-            >
-              <img src="assets/images/spongeguide-00390.jpg" alt="Detalhe aproximado da superfície porosa de Pandaros acanthifolium" />
-              <figcaption>
-                Detalhe da superfície porosa evidenciando a trama rígida que protege a esponja contra bioerosão.
-              </figcaption>
-            </figure>
-            <figure
-              class="gallery__item"
-              role="listitem"
-              tabindex="0"
-              aria-haspopup="dialog"
-              aria-label="Ampliar colônia em crescimento"
-              data-full="assets/images/spongeguide-00671.jpg"
-              data-title="Colônia em crescimento"
-              data-caption="Colônia crescendo sobre rocha iluminada, típica dos recifes do Caribe documentados pelo SpongeGuide."
-            >
-              <img src="assets/images/spongeguide-00671.jpg" alt="Vista lateral de Pandaros acanthifolium crescendo sobre recife" />
-              <figcaption>
-                Colônia crescendo sobre rocha iluminada, típica dos recifes do Caribe documentados pelo SpongeGuide.
-              </figcaption>
-            </figure>
-            <figure
-              class="gallery__item"
-              role="listitem"
-              tabindex="0"
-              aria-haspopup="dialog"
-              aria-label="Ampliar distribuição de óstios"
-              data-full="assets/images/spongeguide-00851.jpg"
-              data-title="Distribuição de óstios"
-              data-caption="Macro revela a distribuição dos óstios que canalizam a água para o interior da esponja."
-            >
-              <img src="assets/images/spongeguide-00851.jpg" alt="Macro mostrando óstios agrupados na superfície de Pandaros acanthifolium" />
-              <figcaption>
-                Macro revela a distribuição dos óstios que canalizam a água para o interior da esponja.
-              </figcaption>
-            </figure>
-            <figure
-              class="gallery__item"
-              role="listitem"
-              tabindex="0"
-              aria-haspopup="dialog"
-              aria-label="Ampliar esqueleto exposto"
-              data-full="assets/images/spongeguide-00894.jpg"
-              data-title="Esqueleto exposto"
-              data-caption="Porção erodida expõe espículas e a rede fibrosa que sustenta a estrutura corporal."
-            >
-              <img src="assets/images/spongeguide-00894.jpg" alt="Pandaros acanthifolium com porção erodida destacando o esqueleto interno" />
-              <figcaption>
-                Porção erodida expõe espículas e a rede fibrosa que sustenta a estrutura corporal.
-              </figcaption>
-            </figure>
-            <figure
-              class="gallery__item"
-              role="listitem"
-              tabindex="0"
-              aria-haspopup="dialog"
-              aria-label="Ampliar cena com esponja e corais"
-              data-full="assets/images/spongeguide-01414.jpg"
-              data-title="Esponja e corais"
-              data-caption="Cena subaquática comparando a esponja com corais coexistentes, evidenciando a diversidade bentônica."
-            >
-              <img src="assets/images/spongeguide-01414.jpg" alt="Vista subaquática de Pandaros acanthifolium contrastando com corais vizinhos" />
-              <figcaption>
-                Cena subaquática comparando a esponja com corais coexistentes, evidenciando a diversidade bentônica.
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section id="referencias" class="section section--light">
-        <div class="section__inner">
-          <div class="section__heading">
-            <span class="tag">Referências</span>
-            <h2>Fontes consultadas</h2>
-          </div>
-          <ul class="reference-list">
-            <li>Pechenik, J. A. <em>Biologia dos Invertebrados</em>. 7. ed. Porto Alegre: AMGH, 2016.</li>
-            <li>Urry, L. A. et al. <em>Biologia de Campbell</em>. 12. ed. Porto Alegre: Artmed, 2022.</li>
-            <li>Ruppert, E. E.; Fox, R. S.; Barnes, R. D. <em>Zoologia dos Invertebrados</em>. 7ª ed.</li>
-            <li>Brusca, R. C.; Brusca, G. J. <em>Invertebrados</em>. 3ª ed.</li>
-            <li>Frontiers in Marine Science — artigos sobre ecologia e biotecnologia de esponjas, 2022-2024.</li>
-            <li>SpongeGuide (University of North Carolina Wilmington). Banco fotográfico consultado em 1.º out. 2025.</li>
-            <li>Wikimedia Commons — Lamiot; Peng; jkirkhart35; Berezovska; M. Readey; Rohit Kumar Sengupta; Philcha; James St. John (licenças CC).</li>
-          </ul>
-        </div>
-      </section>
-    </main>
 
     <div class="legend-popup" role="dialog" aria-modal="true" aria-labelledby="legend-popup-title" hidden>
       <div class="legend-popup__content">
