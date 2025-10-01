@@ -1,0 +1,37 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700">
+  <defs>
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5d17a" />
+      <stop offset="100%" stop-color="#d7a962" />
+    </linearGradient>
+    <radialGradient id="poreGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#f5d17a" stop-opacity="0.2" />
+    </radialGradient>
+  </defs>
+  <rect width="500" height="700" fill="#023047" />
+  <g transform="translate(80,40)">
+    <path d="M170 0 C60 60 0 180 10 350 C20 500 80 620 170 640 C260 620 320 500 330 350 C340 180 280 60 170 0 Z" fill="url(#bodyGradient)" stroke="#b78844" stroke-width="6" />
+    <g fill="none" stroke="#b78844" stroke-width="4" opacity="0.4">
+      <path d="M120 60 C80 140 60 240 70 360 C80 460 110 540 160 600" />
+      <path d="M220 60 C260 140 280 240 270 360 C260 460 230 540 180 600" />
+    </g>
+    <g fill="url(#poreGradient)">
+      <circle cx="120" cy="120" r="22" />
+      <circle cx="210" cy="100" r="18" />
+      <circle cx="90" cy="220" r="26" />
+      <circle cx="240" cy="220" r="24" />
+      <circle cx="160" cy="260" r="28" />
+      <circle cx="110" cy="360" r="20" />
+      <circle cx="210" cy="380" r="22" />
+      <circle cx="140" cy="440" r="18" />
+      <circle cx="200" cy="500" r="24" />
+    </g>
+    <path d="M170 -10 C150 120 150 220 170 360 C190 220 190 120 170 -10 Z" fill="#f4efe1" opacity="0.7" />
+    <path d="M170 360 C150 440 150 520 170 640 C190 520 190 440 170 360 Z" fill="#e3dac9" opacity="0.75" />
+  </g>
+  <g transform="translate(40,640)" font-family="'Segoe UI', sans-serif" fill="#f1f5f9">
+    <text x="0" y="0" font-size="28" font-weight="600">Estrutura básica de uma esponja</text>
+    <text x="0" y="32" font-size="18" opacity="0.8">Ilustração estilizada para fins educativos</text>
+  </g>
+</svg>

@@ -1,0 +1,55 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <defs>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1b4965" />
+      <stop offset="100%" stop-color="#0d2a42" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#6fffe9" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#1b4965" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="spongeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb703" />
+      <stop offset="100%" stop-color="#fb8500" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#waterGradient)" />
+  <circle cx="450" cy="280" r="320" fill="url(#glow)" />
+  <g transform="translate(0,420)">
+    <path d="M0 150 C120 120 200 50 320 60 C420 70 480 120 580 100 C700 80 780 20 900 60 L900 200 L0 200 Z" fill="#18435a" />
+  </g>
+  <g transform="translate(140,180)">
+    <path d="M120 380 C60 320 40 220 70 120 C100 20 160 -20 220 10 C260 30 280 90 270 160 C260 250 200 320 120 380 Z" fill="url(#spongeGradient)" stroke="#d46a00" stroke-width="6" />
+    <g fill="#ffe8c2" opacity="0.4">
+      <circle cx="150" cy="80" r="16" />
+      <circle cx="210" cy="140" r="20" />
+      <circle cx="180" cy="210" r="14" />
+      <circle cx="120" cy="180" r="18" />
+      <circle cx="170" cy="260" r="22" />
+      <circle cx="110" cy="300" r="18" />
+    </g>
+  </g>
+  <g transform="translate(400,220)">
+    <path d="M120 350 C80 280 60 200 80 130 C100 60 150 10 220 20 C270 30 310 80 300 160 C290 240 240 320 180 360 Z" fill="#e85d04" stroke="#c44502" stroke-width="5" />
+    <g fill="#ffe8c2" opacity="0.5">
+      <circle cx="190" cy="100" r="18" />
+      <circle cx="230" cy="170" r="22" />
+      <circle cx="160" cy="200" r="16" />
+      <circle cx="210" cy="240" r="20" />
+      <circle cx="170" cy="280" r="14" />
+    </g>
+  </g>
+  <g transform="translate(640,250)">
+    <path d="M80 280 C50 220 40 160 60 110 C80 60 120 20 170 30 C210 40 240 80 230 140 C220 210 180 260 120 310 Z" fill="#c77dff" stroke="#9d4edd" stroke-width="4" />
+    <g fill="#f1e6ff" opacity="0.5">
+      <circle cx="130" cy="90" r="14" />
+      <circle cx="160" cy="140" r="16" />
+      <circle cx="110" cy="160" r="12" />
+      <circle cx="150" cy="200" r="14" />
+    </g>
+  </g>
+  <g transform="translate(60,80)" fill="#e0fbfc" font-family="'Segoe UI', sans-serif">
+    <text x="0" y="0" font-size="42" font-weight="600">Comunidade de esponjas</text>
+    <text x="0" y="40" font-size="26" opacity="0.7">Representação artística de um recife com diferentes classes</text>
+  </g>
+</svg>
