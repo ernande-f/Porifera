@@ -22,20 +22,20 @@
             <a class="main-nav__brand" href="#inicio">Universo dos Poríferos</a>
             
 <ul class="main-nav__list">
-  <li><a href="#inicio"><span class="nav-index">00</span><span class="sr-only">Início</span></a></li>
-  <li><a href="#diagnostica"><span class="nav-index">01</span><span class="sr-only">Característica diagnóstica</span></a></li>
-  <li><a href="#gerais"><span class="nav-index">02</span><span class="sr-only">Características gerais</span></a></li>
-  <li><a href="#anatomia"><span class="nav-index">03</span><span class="sr-only">Anatomia</span></a></li>
-  <li><a href="#tipos"><span class="nav-index">04</span><span class="sr-only">Tipos corporais</span></a></li>
-  <li><a href="#classes"><span class="nav-index">05</span><span class="sr-only">Classes</span></a></li>
-  <li><a href="#dormencia"><span class="nav-index">06</span><span class="sr-only">Dormência e gemulação</span></a></li>
-  <li><a href="#reproducao"><span class="nav-index">07</span><span class="sr-only">Reprodução</span></a></li>
-  <li><a href="#evolucao"><span class="nav-index">08</span><span class="sr-only">Evolução</span></a></li>
-  <li><a href="#importancia"><span class="nav-index">09</span><span class="sr-only">Importância</span></a></li>
-  <li><a href="#referencias"><span class="nav-index">10</span><span class="sr-only">Referências</span></a></li>
+  <li><a href="#inicio"><span class="nav-index">00</span><span class="nav-label">Início</span></a></li>
+  <li><a href="#diagnostica"><span class="nav-index">01</span><span class="nav-label">Diagnóstico</span></a></li>
+  <li><a href="#gerais"><span class="nav-index">02</span><span class="nav-label">Características</span></a></li>
+  <li><a href="#anatomia"><span class="nav-index">03</span><span class="nav-label">Anatomia</span></a></li>
+  <li><a href="#tipos"><span class="nav-index">04</span><span class="nav-label">Arquiteturas</span></a></li>
+  <li><a href="#classes"><span class="nav-index">05</span><span class="nav-label">Classes</span></a></li>
+  <li><a href="#dormencia"><span class="nav-index">06</span><span class="nav-label">Dormência</span></a></li>
+  <li><a href="#reproducao"><span class="nav-index">07</span><span class="nav-label">Reprodução</span></a></li>
+  <li><a href="#evolucao"><span class="nav-index">08</span><span class="nav-label">Evolução</span></a></li>
+  <li><a href="#importancia"><span class="nav-index">09</span><span class="nav-label">Importância</span></a></li>
+  <li><a href="#referencias"><span class="nav-index">10</span><span class="nav-label">Referências</span></a></li>
 </ul>
 
-            <a class="main-nav__cta" href="#caracteristicas">Começar estudo</a>
+            <a class="main-nav__cta" href="#diagnostica">Começar estudo</a>
           </div>
         </nav>
       </div>
@@ -43,6 +43,10 @@
 
     
 <main class="magazine" data-current-page="0">
+  <button class="magazine__fullscreen-toggle" type="button" aria-pressed="false">
+    <span class="magazine__fullscreen-icon" aria-hidden="true">⤢</span>
+    <span class="magazine__fullscreen-label">Tela cheia</span>
+  </button>
   <div class="magazine__viewport" role="group" aria-live="polite">
     <section class="hero" id="inicio">
       <div class="hero__content">
@@ -177,8 +181,54 @@
             </dl>
           </div>
         </div>
+
+        <div class="diagram">
+          <figure class="diagram__visual">
+            <img src="assets/images/esponja-anatomia.svg" alt="Ilustração esquemática de uma esponja com destaque das principais estruturas" />
+            <button class="hotspot" type="button" style="--x:70%; --y:18%;" data-title="Ósculo" data-description="Abertura superior por onde a água filtrada deixa o corpo. Nas arquiteturas mais complexas, vários ósculos trabalham em conjunto." aria-label="Explicar ósculo" aria-pressed="true"></button>
+            <button class="hotspot" type="button" style="--x:50%; --y:48%;" data-title="Espongiocele" data-description="Cavidade central por onde a água circula antes de ser expulsa. O volume interno varia conforme o plano corporal." aria-label="Explicar espongiocele"></button>
+            <button class="hotspot" type="button" style="--x:62%; --y:68%;" data-title="Coanócitos" data-description="Células flageladas com colar de microvilosidades responsáveis por gerar o fluxo e capturar partículas alimentares." aria-label="Explicar coanócitos"></button>
+            <button class="hotspot" type="button" style="--x:34%; --y:60%;" data-title="Porócitos" data-description="Células tubulares que formam os poros de entrada, regulando o volume de água que atravessa a esponja." aria-label="Explicar porócitos"></button>
+            <button class="hotspot" type="button" style="--x:46%; --y:35%;" data-title="Mesoílo" data-description="Matriz gelatinosa que abriga fibras, arqueócitos e outras células móveis, funcionando como um tecido conjuntivo primitivo." aria-label="Explicar mesoílo"></button>
+          </figure>
+          <div class="diagram__info">
+            <h3 id="diagram-title">Ósculo</h3>
+            <p id="diagram-description">Abertura superior por onde a água filtrada deixa o corpo. Nas arquiteturas mais complexas, vários ósculos trabalham em conjunto.</p>
+          </div>
+        </div>
+
       </div>
     </section>
+
+
+    <section id="morfologia" class="section section--gallery">
+      <div class="section__inner">
+        <div class="section__heading">
+          <span class="tag">Imagens do PDF</span>
+          <h2>Estruturas observadas nas lâminas</h2>
+          <p>Recortes do material original ajudam a visualizar o fluxo de água, os tipos celulares e as estruturas de suporte descritas no texto.</p>
+        </div>
+        <div class="gallery">
+          <figure class="gallery__item" data-full="assets/images/part-fluxo-agua.jpg" data-title="Fluxo de água" data-caption="O trajeto da água evidencia a sequência ostíolo → câmaras flageladas → espongiocele → ósculo.">
+            <img src="assets/images/part-fluxo-agua.jpg" alt="Esquema mostrando o fluxo de água através dos canais da esponja" />
+            <figcaption>Fluxo contínuo impulsionado pelos coanócitos</figcaption>
+          </figure>
+          <figure class="gallery__item" data-full="assets/images/part-coanocito.jpg" data-title="Coanócito" data-caption="O colar de microvilosidades amplia a área de captura de partículas microscópicas.">
+            <img src="assets/images/part-coanocito.jpg" alt="Microscopia de um coanócito com colar de microvilosidades" />
+            <figcaption>Detalhe de um coanócito funcional</figcaption>
+          </figure>
+          <figure class="gallery__item" data-full="assets/images/part-espiculas.jpg" data-title="Espículas" data-caption="Estruturas esqueléticas de sílica que conferem suporte e defesa à esponja.">
+            <img src="assets/images/part-espiculas.jpg" alt="Espículas silicosas observadas em microscopia" />
+            <figcaption>Espículas silicosas em arranjo tridimensional</figcaption>
+          </figure>
+          <figure class="gallery__item" data-full="assets/images/part-porocitos.jpg" data-title="Porócitos" data-caption="Células cilíndricas que funcionam como válvulas para a entrada da água.">
+            <img src="assets/images/part-porocitos.jpg" alt="Detalhe dos porócitos formando os canais de entrada" />
+            <figcaption>Porócitos controlando os ostíolos</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
 
     <section id="tipos" class="section">
       <div class="section__inner">

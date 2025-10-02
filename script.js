@@ -72,6 +72,74 @@ const galleryLightboxTitle = document.getElementById('gallery-lightbox-title');
 const galleryLightboxCaption = document.getElementById('gallery-lightbox-caption');
 let lastGalleryTrigger = null;
 
+const magazineElement = document.querySelector('.magazine');
+const fullscreenToggle = document.querySelector('.magazine__fullscreen-toggle');
+
+const isMagazineFullscreen = () =>
+  document.fullscreenElement === magazineElement || document.body.classList.contains('is-magazine-immersive');
+
+const syncFullscreenUi = (active, { forceBodyState = false } = {}) => {
+  if (!magazineElement) {
+    return;
+  }
+  magazineElement.classList.toggle('magazine--immersive', active);
+  if (forceBodyState || !document.fullscreenElement) {
+    document.body.classList.toggle('is-magazine-immersive', active);
+  } else if (!active) {
+    document.body.classList.remove('is-magazine-immersive');
+  }
+  if (fullscreenToggle) {
+    fullscreenToggle.setAttribute('aria-pressed', String(active));
+    const label = fullscreenToggle.querySelector('.magazine__fullscreen-label');
+    if (label) {
+      label.textContent = active ? 'Sair da tela cheia' : 'Tela cheia';
+    }
+  }
+};
+
+const enterMagazineFullscreen = async () => {
+  if (!magazineElement) {
+    return;
+  }
+  if (document.fullscreenEnabled && magazineElement.requestFullscreen) {
+    try {
+      await magazineElement.requestFullscreen({ navigationUI: 'hide' });
+    } catch (error) {
+      console.warn('Não foi possível ativar a tela cheia nativa.', error);
+      syncFullscreenUi(true, { forceBodyState: true });
+    }
+  } else {
+    syncFullscreenUi(true, { forceBodyState: true });
+  }
+  window.dispatchEvent(new Event('resize'));
+};
+
+const exitMagazineFullscreen = async () => {
+  if (document.fullscreenElement === magazineElement) {
+    await document.exitFullscreen();
+  } else {
+    syncFullscreenUi(false, { forceBodyState: true });
+  }
+  window.dispatchEvent(new Event('resize'));
+};
+
+fullscreenToggle?.addEventListener('click', () => {
+  if (isMagazineFullscreen()) {
+    exitMagazineFullscreen();
+  } else {
+    enterMagazineFullscreen();
+  }
+});
+
+document.addEventListener('fullscreenchange', () => {
+  const active = document.fullscreenElement === magazineElement;
+  syncFullscreenUi(active);
+  if (!active) {
+    document.body.classList.remove('is-magazine-immersive');
+  }
+  window.dispatchEvent(new Event('resize'));
+});
+
 const setGalleryActive = (item) => {
   galleryItems.forEach((figure) => {
     if (figure === item) {
@@ -300,6 +368,12 @@ window.addEventListener('keydown', (event) => {
       closeMenu();
       menuToggle?.focus();
     }
+
+    if (!document.fullscreenElement && document.body.classList.contains('is-magazine-immersive')) {
+      event.preventDefault();
+      exitMagazineFullscreen();
+      return;
+    }
     return;
   }
 
@@ -312,8 +386,20 @@ window.addEventListener('keydown', (event) => {
 
 
 const initializeMagazine = () => {
-  const magazine = document.querySelector('.magazine');
+  const magazine = magazineElement;
   if (!magazine) {
+    return;
+  }
+
+  const enhancementMedia = window.matchMedia('(min-width: 960px)');
+  if (!enhancementMedia.matches) {
+    const reinitializeOnMatch = (event) => {
+      if (event.matches) {
+        enhancementMedia.removeEventListener('change', reinitializeOnMatch);
+        initializeMagazine();
+      }
+    };
+    enhancementMedia.addEventListener('change', reinitializeOnMatch);
     return;
   }
 
@@ -321,7 +407,9 @@ const initializeMagazine = () => {
   let headerOffset = 0;
 
   const updatePageMetrics = () => {
-    const headerHeight = header?.offsetHeight ?? 0;
+    const immersiveActive =
+      magazine.classList.contains('magazine--immersive') || document.body.classList.contains('is-magazine-immersive');
+    const headerHeight = immersiveActive ? 0 : header?.offsetHeight ?? 0;
     headerOffset = headerHeight;
     const availableHeight = window.innerHeight - headerHeight;
     const pageHeight = availableHeight > 0 ? availableHeight : Math.max(window.innerHeight, 320);
@@ -365,6 +453,9 @@ const initializeMagazine = () => {
   const totalPages = sections.length;
   let currentPage = 0;
 
+  const compactMedia = window.matchMedia('(max-width: 900px)');
+  const shouldUsePaging = () => !compactMedia.matches;
+
   if (totalLabel) {
     totalLabel.textContent = String(totalPages);
   }
@@ -399,13 +490,25 @@ const initializeMagazine = () => {
     if (section.id) {
       sectionIndexMap.set(section.id, index);
     }
-    section.setAttribute('tabindex', '-1');
-    section.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
     const title = getSectionTitle(section);
     if (title) {
       section.setAttribute('aria-label', title);
     }
   });
+
+  const applyAccessibilityState = () => {
+    if (shouldUsePaging()) {
+      sections.forEach((section, index) => {
+        section.setAttribute('tabindex', '-1');
+        section.setAttribute('aria-hidden', index === currentPage ? 'false' : 'true');
+      });
+    } else {
+      sections.forEach((section) => {
+        section.removeAttribute('tabindex');
+        section.removeAttribute('aria-hidden');
+      });
+    }
+  };
 
   const ensurePageBanners = () => {
     sections.forEach((section, index) => {
@@ -446,30 +549,44 @@ const initializeMagazine = () => {
   };
 
   const updateUi = () => {
-    magazine.style.setProperty('--magazine-page', String(currentPage));
-    const progress = ((currentPage + 1) / totalPages) * 100;
-    magazine.style.setProperty('--magazine-progress', `${progress}%`);
+    if (shouldUsePaging()) {
+      magazine.style.setProperty('--magazine-page', String(currentPage));
+      const progress = ((currentPage + 1) / totalPages) * 100;
+      magazine.style.setProperty('--magazine-progress', `${progress}%`);
+    } else {
+      magazine.style.removeProperty('--magazine-page');
+      magazine.style.removeProperty('--magazine-progress');
+    }
+
     if (currentLabel) {
       currentLabel.textContent = String(currentPage + 1);
     }
     magazine.dataset.currentPage = String(currentPage);
+
+    const statusValue = `Página ${currentPage + 1} de ${totalPages}`;
     if (statusLabel) {
+      statusLabel.textContent = statusValue;
       statusLabel.setAttribute('data-page', `${currentPage + 1}/${totalPages}`);
     }
+
+    const disablePrev = currentPage === 0 || !shouldUsePaging();
+    const disableNext = currentPage === totalPages - 1 || !shouldUsePaging();
+
     prevButtons.forEach((button) => {
-      button.disabled = currentPage === 0;
+      button.disabled = disablePrev;
     });
     nextButtons.forEach((button) => {
-      button.disabled = currentPage >= totalPages - 1;
+      button.disabled = disableNext;
     });
-    sections.forEach((section, index) => {
-      const isActive = index === currentPage;
-      section.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-    });
+
+    applyAccessibilityState();
   };
 
   const goToPage = (index, options = {}) => {
     const { focus = false, scroll = true, updateHash = true } = options;
+    if (!shouldUsePaging()) {
+      return false;
+    }
     if (index < 0 || index >= totalPages) {
       return false;
     }
@@ -493,6 +610,11 @@ const initializeMagazine = () => {
     }
     return true;
   };
+
+  compactMedia.addEventListener('change', () => {
+    applyAccessibilityState();
+    updateUi();
+  });
 
   const goToSection = (id, options = {}) => {
     const cleanId = id.replace(/^#/, '');
@@ -591,8 +713,6 @@ const initializeMagazine = () => {
     goToSection(hash, { focus: false, scroll: true, updateHash: false });
   });
 };
+syncFullscreenUi(isMagazineFullscreen());
 
 initializeMagazine();
-
-
-
