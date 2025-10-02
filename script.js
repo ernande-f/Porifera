@@ -25,8 +25,52 @@ hotspots.forEach((hotspot) => {
 
 const menuToggle = document.querySelector('.menu-toggle');
 const menu = document.getElementById('menu-links');
+const magazineIndexContainer = document.querySelector('.magazine-floating-index');
+const magazineIndexToggle = document.querySelector('.magazine-floating-index__toggle');
+const magazineIndexPanel = document.getElementById('magazine-index-panel');
+const magazineIndexList = magazineIndexPanel?.querySelector('.magazine-floating-index__list');
 let magazineNavigationHandler = null;
 let magazineHotkeysHandler = null;
+
+const isMagazineIndexOpen = () => magazineIndexContainer?.dataset.open === 'true';
+
+const openMagazineIndex = () => {
+  if (!magazineIndexContainer || !magazineIndexToggle || !magazineIndexPanel) {
+    return;
+  }
+  magazineIndexContainer.dataset.open = 'true';
+  magazineIndexToggle.setAttribute('aria-expanded', 'true');
+  magazineIndexPanel.hidden = false;
+};
+
+const closeMagazineIndex = () => {
+  if (!magazineIndexContainer || !magazineIndexToggle || !magazineIndexPanel) {
+    return;
+  }
+  magazineIndexContainer.dataset.open = 'false';
+  magazineIndexToggle.setAttribute('aria-expanded', 'false');
+  magazineIndexPanel.hidden = true;
+};
+
+magazineIndexToggle?.addEventListener('click', () => {
+  if (isMagazineIndexOpen()) {
+    closeMagazineIndex();
+  } else {
+    openMagazineIndex();
+  }
+});
+
+document.addEventListener('click', (event) => {
+  if (!magazineIndexContainer || !isMagazineIndexOpen()) {
+    return;
+  }
+  if (!(event.target instanceof Node)) {
+    return;
+  }
+  if (!magazineIndexContainer.contains(event.target)) {
+    closeMagazineIndex();
+  }
+});
 
 const closeMenu = () => {
   if (!menuToggle || !menu) {
@@ -41,6 +85,7 @@ if (menuToggle && menu) {
     const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
     menuToggle.setAttribute('aria-expanded', String(!expanded));
     menu.dataset.open = (!expanded).toString();
+    closeMagazineIndex();
   });
 
   menu.querySelectorAll('a').forEach((link) => {
@@ -52,6 +97,7 @@ if (menuToggle && menu) {
           event.preventDefault();
         }
       }
+      closeMagazineIndex();
       closeMenu();
     });
   });
@@ -364,6 +410,13 @@ window.addEventListener('keydown', (event) => {
       return;
     }
 
+    if (isMagazineIndexOpen()) {
+      event.preventDefault();
+      closeMagazineIndex();
+      magazineIndexToggle?.focus();
+      return;
+    }
+
     if (menu && menu.dataset.open === 'true') {
       closeMenu();
       menuToggle?.focus();
@@ -478,6 +531,7 @@ const initializeMagazine = () => {
     importancia: 'Importância',
     referencias: 'Referências',
   };
+
   const getSectionTitle = (section) => {
     const heading = section.querySelector('.section__heading h2, h1');
     return heading?.textContent?.trim() || null;
@@ -485,15 +539,22 @@ const initializeMagazine = () => {
 
   const formatPageNumber = (index) => String(index).padStart(2, '0');
 
-  sections.forEach((section, index) => {
+  const getResolvedTitle = (section, index, fallbackTitle) => {
+    const overrideTitle = section.id ? titleOverrides[section.id] : null;
+    return overrideTitle || fallbackTitle || `Página ${formatPageNumber(index)}`;
+  };
+
+  const pageEntries = sections.map((section, index) => {
     section.dataset.pageIndex = String(index);
     if (section.id) {
       sectionIndexMap.set(section.id, index);
     }
-    const title = getSectionTitle(section);
-    if (title) {
-      section.setAttribute('aria-label', title);
+    const headingTitle = getSectionTitle(section);
+    if (headingTitle) {
+      section.setAttribute('aria-label', headingTitle);
     }
+    const resolvedTitle = getResolvedTitle(section, index, headingTitle);
+    return { section, index, id: section.id || null, title: resolvedTitle };
   });
 
   const applyAccessibilityState = () => {
@@ -511,9 +572,7 @@ const initializeMagazine = () => {
   };
 
   const ensurePageBanners = () => {
-    sections.forEach((section, index) => {
-      const overrideTitle = section.id ? titleOverrides[section.id] : null;
-      const resolvedTitle = overrideTitle || getSectionTitle(section) || `Página ${formatPageNumber(index)}`;
+    pageEntries.forEach(({ section, index, title }) => {
       const currentBanner = section.querySelector('.page-banner');
       if (currentBanner) {
         const indexNode = currentBanner.querySelector('.page-banner__index');
@@ -522,19 +581,89 @@ const initializeMagazine = () => {
           indexNode.textContent = formatPageNumber(index);
         }
         if (titleNode) {
-          titleNode.textContent = resolvedTitle;
+          titleNode.textContent = title;
         }
         return;
       }
       const banner = document.createElement('div');
       banner.className = 'page-banner';
       banner.setAttribute('aria-hidden', 'true');
-      banner.innerHTML = `<span class="page-banner__index">${formatPageNumber(index)}</span><span class="page-banner__title">${resolvedTitle}</span>`;
+      banner.innerHTML = `<span class="page-banner__index">${formatPageNumber(index)}</span><span class="page-banner__title">${title}</span>`;
       section.prepend(banner);
     });
   };
 
   ensurePageBanners();
+
+  let updateIndexUi = () => {};
+  if (magazineIndexContainer) {
+    const shouldHideIndex = pageEntries.length === 0;
+    magazineIndexContainer.hidden = shouldHideIndex;
+    if (shouldHideIndex) {
+      closeMagazineIndex();
+    }
+  }
+
+  if (magazineIndexList && pageEntries.length) {
+    magazineIndexList.innerHTML = '';
+    const fragment = document.createDocumentFragment();
+    const indexButtons = [];
+    pageEntries.forEach(({ index, title }) => {
+      const item = document.createElement('li');
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'magazine-floating-index__item';
+      button.dataset.pageIndex = String(index);
+      button.innerHTML = `<span class="magazine-floating-index__item-index">${formatPageNumber(index)}</span><span class="magazine-floating-index__item-title">${title}</span>`;
+      item.appendChild(button);
+      fragment.appendChild(item);
+      indexButtons.push(button);
+    });
+    magazineIndexList.appendChild(fragment);
+
+    updateIndexUi = () => {
+      indexButtons.forEach((button) => {
+        const index = Number(button.dataset.pageIndex);
+        const isActive = index === currentPage;
+        button.classList.toggle('is-active', isActive);
+        if (isActive) {
+          button.setAttribute('aria-current', 'page');
+        } else {
+          button.removeAttribute('aria-current');
+        }
+        if (shouldUsePaging()) {
+          button.disabled = isActive;
+        } else {
+          button.disabled = false;
+        }
+      });
+    };
+
+    const navigateFromIndex = (index) => {
+      const handled = goToPage(index, { focus: true });
+      if (!handled) {
+        const targetSection = sections[index];
+        if (targetSection) {
+          const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: Math.max(targetTop, 0),
+            behavior: 'smooth',
+          });
+          focusSection(targetSection);
+        }
+      }
+      closeMagazineIndex();
+    };
+
+    indexButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const index = Number(button.dataset.pageIndex);
+        if (Number.isFinite(index)) {
+          navigateFromIndex(index);
+        }
+      });
+    });
+  }
 
   const focusSection = (section) => {
     const focusable = section.querySelector(
@@ -580,6 +709,7 @@ const initializeMagazine = () => {
     });
 
     applyAccessibilityState();
+    updateIndexUi();
   };
 
   const goToPage = (index, options = {}) => {
