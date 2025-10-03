@@ -7,10 +7,10 @@ hotspots.forEach((hotspot) => {
     hotspots.forEach((btn) => btn.setAttribute('aria-pressed', 'false'));
     hotspot.setAttribute('aria-pressed', 'true');
     const { title, description } = hotspot.dataset;
-    if (title) {
+    if (title && diagramTitle) {
       diagramTitle.textContent = title;
     }
-    if (description) {
+    if (description && diagramDescription) {
       diagramDescription.textContent = description;
     }
   });
@@ -264,18 +264,20 @@ const closeGalleryLightbox = () => {
   }, 320);
 };
 
-galleryItems.forEach((item) => {
-  item.addEventListener('click', () => {
-    openGalleryLightbox(item);
-  });
-
-  item.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
+if (galleryItems.length) {
+  galleryItems.forEach((item) => {
+    item.addEventListener('click', () => {
       openGalleryLightbox(item);
-    }
+    });
+
+    item.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openGalleryLightbox(item);
+      }
+    });
   });
-});
+}
 
 galleryLightboxClose?.addEventListener('click', () => {
   closeGalleryLightbox();
@@ -326,11 +328,26 @@ const showLegendMedia = (button) => {
       ? `Registro fotográfico de ${button.dataset.term.toLowerCase()}`
       : 'Registro fotográfico da estrutura da esponja';
     legendPopupImage.alt = button.dataset.imageAlt || fallbackAlt;
+    legendPopupImage.style.objectFit = button.dataset.imageFit || 'contain';
+    legendPopupImage.style.objectPosition = button.dataset.imagePosition || '50% 50%';
+    const imageScale = Number(button.dataset.imageScale || '1');
+    if (!Number.isNaN(imageScale) && imageScale !== 1) {
+      legendPopupImage.style.transform = `scale(${imageScale})`;
+      legendPopupImage.style.transformOrigin =
+        button.dataset.imageAnchor || button.dataset.imagePosition || '50% 50%';
+    } else {
+      legendPopupImage.style.transform = '';
+      legendPopupImage.style.transformOrigin = '';
+    }
     legendPopupCredit.textContent = button.dataset.credit || '';
     legendPopupMedia.hidden = false;
   } else {
     legendPopupImage.removeAttribute('src');
     legendPopupImage.alt = '';
+    legendPopupImage.style.objectFit = '';
+    legendPopupImage.style.objectPosition = '';
+    legendPopupImage.style.transform = '';
+    legendPopupImage.style.transformOrigin = '';
     legendPopupCredit.textContent = '';
     legendPopupMedia.hidden = true;
   }
@@ -362,6 +379,10 @@ const closeLegendPopup = () => {
   if (legendPopupImage) {
     legendPopupImage.removeAttribute('src');
     legendPopupImage.alt = '';
+    legendPopupImage.style.objectFit = '';
+    legendPopupImage.style.objectPosition = '';
+    legendPopupImage.style.transform = '';
+    legendPopupImage.style.transformOrigin = '';
   }
   if (legendPopupMedia) {
     legendPopupMedia.hidden = true;
@@ -404,7 +425,7 @@ window.addEventListener('keydown', (event) => {
       return;
     }
 
-    if (galleryLightbox && !galleryLightbox.hidden) {
+    if (galleryItems.length && galleryLightbox && !galleryLightbox.hidden) {
       event.preventDefault();
       closeGalleryLightbox();
       return;
